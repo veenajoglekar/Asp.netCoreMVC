@@ -23,7 +23,16 @@ namespace Asp.netCoreMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddControllers();
+            //AddController method Registers everything that is needed for Web API Development.
+
+
             services.AddControllersWithViews();
+            //AddControllersWithViews method registers everything that is needed for Web App Development using Controllers and Views.
+            //It registers everything that AddController installs plus the support for Views
+
+            //services.AddRazorPages();
+            //The AddRazorPages method registers everything everything needed for Web app development using the Razor Pages.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
