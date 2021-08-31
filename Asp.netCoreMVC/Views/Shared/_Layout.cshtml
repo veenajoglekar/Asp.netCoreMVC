@@ -31,6 +31,10 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            @*an application UI may contain a header, left menu bar, right bar, and footer section that remains the same on every page.
+                Only the center section changes dynamically*@
+            @*RenderBody() renders all the content of the child view which is not wrapped in the named section.*@
             @RenderBody()
         </main>
     </div>
@@ -43,6 +47,8 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*RenderSection() renders only a part of the child view which is wrapped under the named section.*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>
