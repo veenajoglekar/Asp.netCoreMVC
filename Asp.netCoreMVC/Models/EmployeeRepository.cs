@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Asp.netCoreMVC.Models
 {
-    public class EmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         List<Employee> Data = new List<Employee>()
         {
@@ -50,6 +50,22 @@ namespace Asp.netCoreMVC.Models
         public Employee GetEmployeeById(int id)
         {
             return Data.FirstOrDefault(a => a.EmployeeId == id);
+        }
+
+        public Boolean CreateEmployee(Employee employee)
+        {
+            try
+            {
+                
+                var maxId = Data.Select(a => a.EmployeeId).Max();
+                employee.EmployeeId = maxId + 1;
+                Data.Add(employee);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Asp.netCoreMVC.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,7 @@ namespace Asp.netCoreMVC
 
             //services.AddRazorPages();
             //The AddRazorPages method registers everything everything needed for Web app development using the Razor Pages.
+            services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

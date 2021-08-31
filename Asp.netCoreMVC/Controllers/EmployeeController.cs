@@ -11,6 +11,12 @@ namespace Asp.netCoreMVC.Controllers
     public class EmployeeController : Controller
     {
         // GET: EmployeeController
+        private readonly IEmployeeRepository _repository = null;
+
+        public EmployeeController(IEmployeeRepository repository)
+        {
+            _repository = repository;
+        }
         public ActionResult Index()
         {
             EmployeeRepository employeeRepository = new EmployeeRepository();
@@ -35,10 +41,12 @@ namespace Asp.netCoreMVC.Controllers
         // POST: EmployeeController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Employee employee)
         {
             try
             {
+               // EmployeeRepository employeeRepository = new EmployeeRepository();
+                _repository.CreateEmployee(employee);
                 return RedirectToAction(nameof(Index));
             }
             catch
