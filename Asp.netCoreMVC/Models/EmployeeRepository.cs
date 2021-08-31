@@ -67,5 +67,25 @@ namespace Asp.netCoreMVC.Models
             }
             return true;
         }
+
+        public Boolean UpdateEmployee(Employee employee)
+        {
+            try
+            {
+                var resultEmployee = Data.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                resultEmployee.FirstName = employee.FirstName;
+                resultEmployee.LastName = employee.LastName;
+                resultEmployee.Email = employee.Email;
+                resultEmployee.Salary = employee.Salary;
+                resultEmployee.Company = employee.Company;
+                resultEmployee.Dept = employee.Dept;
+
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

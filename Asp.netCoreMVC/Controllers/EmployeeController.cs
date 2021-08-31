@@ -58,16 +58,18 @@ namespace Asp.netCoreMVC.Controllers
         // GET: EmployeeController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var result = _repository.GetEmployeeById(id);
+            return View(result);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Employee employee)
         {
             try
             {
+                _repository.UpdateEmployee(employee);
                 return RedirectToAction(nameof(Index));
             }
             catch

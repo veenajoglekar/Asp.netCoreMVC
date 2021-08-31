@@ -32,9 +32,26 @@ namespace Asp.netCoreMVC
             //AddControllersWithViews method registers everything that is needed for Web App Development using Controllers and Views.
             //It registers everything that AddController installs plus the support for Views
 
+
             //services.AddRazorPages();
             //The AddRazorPages method registers everything everything needed for Web app development using the Razor Pages.
+
+
+
+            //only one instance is available throughout the application and for every request.
+            //The instance is created for the first request and the same is available throughout the application
             services.AddSingleton<IEmployeeRepository, EmployeeRepository>();
+
+
+            //When we register a type as Scoped, one instance is available throughout the application per request.
+            //When a new request comes in, the new instance is created.
+            //services.AddScoped()
+
+
+            //When we register a type as Transient, every time a new instance is created.
+            //Transient creates new instance for every service/ controller as well as for every request and every user.
+            //services.AddTransient()
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
