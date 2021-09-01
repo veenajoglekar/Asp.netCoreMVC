@@ -19,8 +19,8 @@ namespace Asp.netCoreMVC.Controllers
         }
         public ActionResult Index()
         {
-            EmployeeRepository employeeRepository = new EmployeeRepository();
-            var result = employeeRepository.getAllEmployee();
+            //EmployeeRepository employeeRepository = new EmployeeRepository();
+            var result = _repository.getAllEmployee();
             return View(result);
         }
 
@@ -43,13 +43,12 @@ namespace Asp.netCoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Employee employee)
         {
-            try
+            var result = _repository.CreateEmployee(employee);
+            if (result)
             {
-               // EmployeeRepository employeeRepository = new EmployeeRepository();
-                _repository.CreateEmployee(employee);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
                 return View();
             }
@@ -67,12 +66,12 @@ namespace Asp.netCoreMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Employee employee)
         {
-            try
+            var result = _repository.UpdateEmployee(employee);
+            if (result)
             {
-                _repository.UpdateEmployee(employee);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
                 return View();
             }
@@ -81,22 +80,25 @@ namespace Asp.netCoreMVC.Controllers
         // GET: EmployeeController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var result = _repository.GetEmployeeById(id);
+            return View(result);
         }
 
         // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Employee employee)
         {
-            try
+            var result = _repository.DeleteEmployee(id);
+            if(result)
             {
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            else
             {
                 return View();
             }
+           
         }
     }
 }

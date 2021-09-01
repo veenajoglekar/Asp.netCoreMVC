@@ -52,7 +52,7 @@ namespace Asp.netCoreMVC.Models
             return Data.FirstOrDefault(a => a.EmployeeId == id);
         }
 
-        public Boolean CreateEmployee(Employee employee)
+        public bool CreateEmployee(Employee employee)
         {
             try
             {
@@ -68,20 +68,32 @@ namespace Asp.netCoreMVC.Models
             return true;
         }
 
-        public Boolean UpdateEmployee(Employee employee)
+        public bool UpdateEmployee(Employee employee)
         {
             try
             {
-                var resultEmployee = Data.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                var resultEmployee = GetEmployeeById(employee.EmployeeId);
                 resultEmployee.FirstName = employee.FirstName;
                 resultEmployee.LastName = employee.LastName;
                 resultEmployee.Email = employee.Email;
                 resultEmployee.Salary = employee.Salary;
                 resultEmployee.Company = employee.Company;
                 resultEmployee.Dept = employee.Dept;
-
             }
             catch(Exception)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public bool DeleteEmployee(int id)
+        {
+            try
+            {
+                Data.Remove(GetEmployeeById(id));
+            }
+            catch (Exception)
             {
                 return false;
             }

@@ -9,9 +9,10 @@ namespace Asp.netCoreMVC.Models
     {
         public List<Employee> getAllEmployee();
         public Employee GetEmployeeById(int id);
-        public Boolean CreateEmployee(Employee employee);
-        public Boolean UpdateEmployee(Employee employee);
+        public bool CreateEmployee(Employee employee);
+        public bool UpdateEmployee(Employee employee);
 
+        public bool DeleteEmployee(int id);
 
     }
 }
