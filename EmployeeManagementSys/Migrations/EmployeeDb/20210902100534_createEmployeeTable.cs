@@ -15,8 +15,8 @@ namespace EmployeeManagementSys.Migrations.EmployeeDb
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
-                    Address = table.Column<int>(nullable: false),
-                    Salary = table.Column<string>(nullable: true),
+                    Salary = table.Column<int>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
                     Role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

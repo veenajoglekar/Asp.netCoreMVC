@@ -22,6 +22,7 @@ namespace Asp.netCoreMVC.Controllers
             //EmployeeRepository employeeRepository = new EmployeeRepository();
             var result = _repository.getAllEmployee();
             return View(result);
+            
         }
 
         // GET: EmployeeController/Details/5

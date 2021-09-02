@@ -15,9 +15,9 @@ namespace EmployeeManagementSys.Data.Model
 
         public string Email { get; set; }
 
-        public int Address { get; set; }
+        public int Salary{ get; set; }
 
-        public string Salary { get; set; }
+        public string Address{ get; set; }
 
         public string Role { get; set; }
     }

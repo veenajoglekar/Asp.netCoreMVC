@@ -41,6 +41,7 @@ namespace Asp.netCoreMVC.Models
             }
 
         };
+        
 
         public List<Employee> getAllEmployee()
         {

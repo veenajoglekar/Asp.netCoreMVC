@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagementSys.Migrations.EmployeeDb
 {
     [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20210901114834_createEmployeeTable")]
+    [Migration("20210902100534_createEmployeeTable")]
     partial class createEmployeeTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,8 +27,8 @@ namespace EmployeeManagementSys.Migrations.EmployeeDb
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Address")
-                        .HasColumnType("int");
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -42,8 +42,8 @@ namespace EmployeeManagementSys.Migrations.EmployeeDb
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Salary")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Salary")
+                        .HasColumnType("int");
 
                     b.HasKey("EmployeeId");
 
