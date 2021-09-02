@@ -20,6 +20,7 @@ namespace EmployeeManagementSys.Controllers
 
         public IActionResult Index()
         {
+            ViewData["content"] = "Welcome";
             return View();
         }
 

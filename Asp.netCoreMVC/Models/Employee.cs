@@ -21,8 +21,6 @@ namespace Asp.netCoreMVC.Models
 
             public string Dept { get; set; }
 
-           public dynamic ViewBag { get; }
-
         }
     }
 
