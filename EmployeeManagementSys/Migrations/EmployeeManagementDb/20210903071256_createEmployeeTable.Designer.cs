@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagementSys.Migrations.EmployeeFamilyDetailsDb
+namespace EmployeeManagementSys.Migrations.EmployeeManagementDb
 {
-    [DbContext(typeof(EmployeeFamilyDetailsDbContext))]
-    [Migration("20210903050524_createEmployeeFamilyDetailsTable")]
-    partial class createEmployeeFamilyDetailsTable
+    [DbContext(typeof(EmployeeManagementDbContext))]
+    [Migration("20210903071256_createEmployeeTable")]
+    partial class createEmployeeTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,36 @@ namespace EmployeeManagementSys.Migrations.EmployeeFamilyDetailsDb
                 .HasAnnotation("ProductVersion", "3.1.17")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("EmployeeManagementSys.Data.Model.Employee", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Salary")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeId");
+
+                    b.ToTable("employees");
+                });
 
             modelBuilder.Entity("EmployeeManagementSys.Data.Model.EmployeeFamilyDetails", b =>
                 {

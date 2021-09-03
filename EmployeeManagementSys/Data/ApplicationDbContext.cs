@@ -14,22 +14,16 @@ namespace EmployeeManagementSys.Data
         {
         }
     }
-    public class EmployeeDbContext : DbContext
+    public class EmployeeManagementDbContext : DbContext
     {
-        public EmployeeDbContext(DbContextOptions<EmployeeDbContext> options)
+        public EmployeeManagementDbContext(DbContextOptions<EmployeeManagementDbContext> options)
             : base(options)
         {
 
         }
         public DbSet<Employee> employees { get; set; }
-    }
-    public class EmployeeFamilyDetailsDbContext : DbContext
-    {
-        public EmployeeFamilyDetailsDbContext(DbContextOptions<EmployeeFamilyDetailsDbContext> options)
-            : base(options)
-        {
-
-        }
         public DbSet<EmployeeFamilyDetails> EmployeeFamilyDetails { get; set; }
+
     }
+  
 }

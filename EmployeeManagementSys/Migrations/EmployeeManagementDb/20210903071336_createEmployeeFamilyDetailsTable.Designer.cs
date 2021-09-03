@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagementSys.Migrations.EmployeeDb
+namespace EmployeeManagementSys.Migrations.EmployeeManagementDb
 {
-    [DbContext(typeof(EmployeeDbContext))]
-    [Migration("20210902100534_createEmployeeTable")]
-    partial class createEmployeeTable
+    [DbContext(typeof(EmployeeManagementDbContext))]
+    [Migration("20210903071336_createEmployeeFamilyDetailsTable")]
+    partial class createEmployeeFamilyDetailsTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,27 @@ namespace EmployeeManagementSys.Migrations.EmployeeDb
                     b.HasKey("EmployeeId");
 
                     b.ToTable("employees");
+                });
+
+            modelBuilder.Entity("EmployeeManagementSys.Data.Model.EmployeeFamilyDetails", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ContactNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MemberName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MemberRelation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("EmployeeFamilyDetails");
                 });
 #pragma warning restore 612, 618
         }

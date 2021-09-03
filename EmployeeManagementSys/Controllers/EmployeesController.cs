@@ -7,14 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EmployeeManagementSys.Data;
 using EmployeeManagementSys.Data.Model;
+using EmployeeManagementSys.ViewModel;
 
 namespace EmployeeManagementSys.Controllers
 {
     public class EmployeesController : Controller
     {
-        private readonly EmployeeDbContext _context;
+        private readonly EmployeeManagementDbContext _context;
 
-        public EmployeesController(EmployeeDbContext context)
+        public EmployeesController(EmployeeManagementDbContext context)
         {
             _context = context;
         }
@@ -36,12 +37,23 @@ namespace EmployeeManagementSys.Controllers
 
             var employee = await _context.employees
                 .FirstOrDefaultAsync(m => m.EmployeeId == id);
-            if (employee == null)
+
+            var employeeFamilyDetails = await _context.EmployeeFamilyDetails
+                .FirstOrDefaultAsync(m => m.id == id);
+
+        
+
+            if (employee == null && employeeFamilyDetails==null)
             {
                 return NotFound();
             }
+
+            EmpFamilyDetailsViewModel empFamilyDetailsViewModel = new EmpFamilyDetailsViewModel();
+            empFamilyDetailsViewModel.Employee = employee;
+            empFamilyDetailsViewModel.EmployeeFamilyDetails = employeeFamilyDetails;
+
             ViewBag.Header = "Employee Details";
-            return View(employee);
+            return View(empFamilyDetailsViewModel);
         }
 
         // GET: Employees/Create
@@ -55,11 +67,13 @@ namespace EmployeeManagementSys.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,FirstName,LastName,Email,Address,Salary,Role")] Employee employee)
+        public async Task<IActionResult> Create([Bind("EmployeeId,FirstName,LastName,Email,Address,Salary,Role")] Employee employee,
+                                                [Bind("id,MemberName,MemberRelation,ContactNumber")] EmployeeFamilyDetails employeeFamilyDetails)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(employee);
+                _context.Add(employeeFamilyDetails);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -75,11 +89,17 @@ namespace EmployeeManagementSys.Controllers
             }
 
             var employee = await _context.employees.FindAsync(id);
-            if (employee == null)
+            var employeeFamilyDetails = await _context.EmployeeFamilyDetails.FindAsync(id);
+
+            if (employee == null && employeeFamilyDetails == null)
             {
                 return NotFound();
             }
-            return View(employee);
+
+            EmpFamilyDetailsViewModel empFamilyDetailsViewModel = new EmpFamilyDetailsViewModel();
+            empFamilyDetailsViewModel.Employee = employee;
+            empFamilyDetailsViewModel.EmployeeFamilyDetails = employeeFamilyDetails;
+            return View(empFamilyDetailsViewModel);
         }
 
         // POST: Employees/Edit/5
@@ -87,7 +107,8 @@ namespace EmployeeManagementSys.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,FirstName,LastName,Email,Address,Salary,Role")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,FirstName,LastName,Email,Address,Salary,Role")] Employee employee,
+                                                [Bind("id,MemberName,MemberRelation,ContactNumber")] EmployeeFamilyDetails employeeFamilyDetails)
         {
             if (id != employee.EmployeeId)
             {
@@ -99,6 +120,7 @@ namespace EmployeeManagementSys.Controllers
                 try
                 {
                     _context.Update(employee);
+                    _context.Update(employeeFamilyDetails);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

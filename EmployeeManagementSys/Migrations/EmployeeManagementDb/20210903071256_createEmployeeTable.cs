@@ -1,11 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EmployeeManagementSys.Migrations.EmployeeDb
+namespace EmployeeManagementSys.Migrations.EmployeeManagementDb
 {
     public partial class createEmployeeTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "EmployeeFamilyDetails",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MemberName = table.Column<string>(nullable: true),
+                    MemberRelation = table.Column<string>(nullable: true),
+                    ContactNumber = table.Column<long>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeFamilyDetails", x => x.id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "employees",
                 columns: table => new
@@ -27,6 +42,9 @@ namespace EmployeeManagementSys.Migrations.EmployeeDb
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "EmployeeFamilyDetails");
+
             migrationBuilder.DropTable(
                 name: "employees");
         }
