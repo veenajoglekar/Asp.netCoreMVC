@@ -23,4 +23,13 @@ namespace EmployeeManagementSys.Data
         }
         public DbSet<Employee> employees { get; set; }
     }
+    public class EmployeeFamilyDetailsDbContext : DbContext
+    {
+        public EmployeeFamilyDetailsDbContext(DbContextOptions<EmployeeFamilyDetailsDbContext> options)
+            : base(options)
+        {
+
+        }
+        public DbSet<EmployeeFamilyDetails> EmployeeFamilyDetails { get; set; }
+    }
 }
