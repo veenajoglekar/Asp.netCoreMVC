@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagementSys.Migrations
+namespace EmployeeManagementSys.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210901110319_init")]
+    [Migration("20210904082623_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

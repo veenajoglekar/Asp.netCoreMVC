@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagementSys.Migrations.EmployeeManagementDb
+namespace EmployeeManagementSys.DAL.Migrations.EmployeeManagementDb
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    [Migration("20210903071336_createEmployeeFamilyDetailsTable")]
-    partial class createEmployeeFamilyDetailsTable
+    [Migration("20210904084017_createEmployeeTable")]
+    partial class createEmployeeTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

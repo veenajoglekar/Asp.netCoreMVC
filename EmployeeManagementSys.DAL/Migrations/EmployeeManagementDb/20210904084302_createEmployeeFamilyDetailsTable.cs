@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EmployeeManagementSys.Migrations.EmployeeManagementDb
+namespace EmployeeManagementSys.DAL.Migrations.EmployeeManagementDb
 {
     public partial class createEmployeeFamilyDetailsTable : Migration
     {

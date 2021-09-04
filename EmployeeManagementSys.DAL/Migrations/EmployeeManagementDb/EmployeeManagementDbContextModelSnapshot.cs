@@ -3,16 +3,14 @@ using EmployeeManagementSys.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagementSys.Migrations.EmployeeManagementDb
+namespace EmployeeManagementSys.DAL.Migrations.EmployeeManagementDb
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    [Migration("20210903071256_createEmployeeTable")]
-    partial class createEmployeeTable
+    partial class EmployeeManagementDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
