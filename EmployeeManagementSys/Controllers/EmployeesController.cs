@@ -5,25 +5,30 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using EmployeeManagementSys.Data;
-using EmployeeManagementSys.Data.Model;
+using EmployeeManagementSys.DAL.Data.Model;
 using EmployeeManagementSys.ViewModel;
+using Microsoft.AspNetCore.Authorization;
+using EmployeeManagementSys.DAL.Data;
+using EmployeeManagementSys.Services.Services;
 
 namespace EmployeeManagementSys.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private readonly EmployeeManagementDbContext _context;
+        private readonly IEmployeeService _employeeService;
 
-        public EmployeesController(EmployeeManagementDbContext context)
+        public EmployeesController(EmployeeManagementDbContext context, IEmployeeService employeeService)
         {
             _context = context;
+            _employeeService = employeeService;
         }
 
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            return View(await _context.employees.ToListAsync());
+            return View(await _employeeService.GetAllEmployee());
         }
 
         // GET: Employees/Details/5

@@ -1,4 +1,6 @@
-using EmployeeManagementSys.Data;
+using EmployeeManagementSys.DAL.Data;
+using EmployeeManagementSys.DAL.Data.Model;
+using EmployeeManagementSys.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -38,7 +40,7 @@ namespace EmployeeManagementSys
                     Configuration.GetConnectionString("DefaultConnection")));
 
            
-
+            services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

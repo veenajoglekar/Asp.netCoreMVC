@@ -1,4 +1,4 @@
-﻿using EmployeeManagementSys.Data.Model;
+﻿using EmployeeManagementSys.DAL.Data.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

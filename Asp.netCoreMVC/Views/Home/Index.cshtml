@@ -8,6 +8,27 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
+
+
+<ul>
+    @foreach (var student in ViewData["Student"] as List
+   <string>
+       )
+    {
+        <li>@student</li>
+    }
+</ul>
+
+
+<ul>
+    @foreach (var student in ViewBag.Student)
+    {
+        <li> @student</li>
+    }
+</ul>
+
+
+
 @*<div><b>Table Format Data Displaying in ForEach</b><br /></div>
     <table class="table table-bordered table-striped table-hover">
         <tr>

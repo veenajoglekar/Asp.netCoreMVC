@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EmployeeManagementSys.DAL\EmployeeManagementSys.DAL.csproj" />
+    <ProjectReference Include="..\EmployeeManagementSys.Services\EmployeeManagementSys.Services.csproj" />
   </ItemGroup>
 
 </Project>

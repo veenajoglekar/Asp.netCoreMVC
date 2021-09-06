@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asp.netCoreMVC", "..\Asp.ne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagementSys", "..\EmployeeManagementSys\EmployeeManagementSys.csproj", "{313BB3AA-5DF5-4265-B76E-80FBA6A84938}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementSys.DAL", "..\EmployeeManagementSys.DAL\EmployeeManagementSys.DAL.csproj", "{A6F03AA2-1D6B-4A7E-85CC-95CBD8D34827}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagementSys.DAL", "..\EmployeeManagementSys.DAL\EmployeeManagementSys.DAL.csproj", "{A6F03AA2-1D6B-4A7E-85CC-95CBD8D34827}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeManagementSys.Services", "..\EmployeeManagementSys.Services\EmployeeManagementSys.Services.csproj", "{F459F303-A984-47D2-92A9-0CA1667CC298}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A6F03AA2-1D6B-4A7E-85CC-95CBD8D34827}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6F03AA2-1D6B-4A7E-85CC-95CBD8D34827}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6F03AA2-1D6B-4A7E-85CC-95CBD8D34827}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F459F303-A984-47D2-92A9-0CA1667CC298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F459F303-A984-47D2-92A9-0CA1667CC298}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F459F303-A984-47D2-92A9-0CA1667CC298}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F459F303-A984-47D2-92A9-0CA1667CC298}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

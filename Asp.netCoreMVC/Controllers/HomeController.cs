@@ -12,6 +12,8 @@ namespace Asp.netCoreMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public List<string> Student = new List<string>();
+        
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -19,10 +21,18 @@ namespace Asp.netCoreMVC.Controllers
 
         public IActionResult Index()
         {
+            Student.Add("Jignesh");
+            Student.Add("Tejas");
+            Student.Add("Rakesh");
+
+            ViewData["Student"] = Student;
+            ViewBag.Student = Student;
+
             return View();
+         
         }
 
-        public IActionResult Privacy()
+       public IActionResult Privacy()
         {
             return View();
         }
