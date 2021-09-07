@@ -12,21 +12,31 @@ namespace Asp.netCoreMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public List<string> Student = new List<string>();
-        
-        public HomeController(ILogger<HomeController> logger)
+        //public List<string> Student = new List<string>();
+        private readonly IEmployeeRepository _repository = null;
+
+        public HomeController(IEmployeeRepository repository)
         {
-            _logger = logger;
+            _repository = repository;
         }
+
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
         public IActionResult Index()
         {
-            Student.Add("Jignesh");
-            Student.Add("Tejas");
-            Student.Add("Rakesh");
+            List<Employee> emp = _repository.getAllEmployee();
+            ViewData["EmployeeList"] = emp;
+            //ViewBag.EmployeeList();
 
-            ViewData["Student"] = Student;
-            ViewBag.Student = Student;
+            //Student.Add("Jignesh");
+            //Student.Add("Tejas");
+            //Student.Add("Rakesh");
+
+            //ViewData["Student"] = Student;
+            //ViewBag.Student = Student;
 
             return View();
          

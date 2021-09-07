@@ -19,7 +19,8 @@ namespace Asp.netCoreMVC.Controllers
         }
         public ActionResult Index()
         {
-            //EmployeeRepository employeeRepository = new EmployeeRepository();
+          
+           //EmployeeRepository employeeRepository = new EmployeeRepository();
             var result = _repository.getAllEmployee();
             return View(result);
             
