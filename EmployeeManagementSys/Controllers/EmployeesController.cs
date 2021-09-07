@@ -34,21 +34,21 @@ namespace EmployeeManagementSys.Controllers
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.employees
-                .FirstOrDefaultAsync(m => m.EmployeeId == id);
+            var employee = await _employeeService.GetEmployeeById(id);
 
-            var employeeFamilyDetails = await _context.EmployeeFamilyDetails
-                .FirstOrDefaultAsync(m => m.id == id);
 
-        
+            var employeeFamilyDetails = await _employeeService.GetEmployeeFamilyDetailsById(id);
 
-            if (employee == null && employeeFamilyDetails==null)
+
+
+
+            if (employee == null || employeeFamilyDetails == null)
             {
                 return NotFound();
             }
@@ -75,14 +75,22 @@ namespace EmployeeManagementSys.Controllers
         public async Task<IActionResult> Create([Bind("EmployeeId,FirstName,LastName,Email,Address,Salary,Role")] Employee employee,
                                                 [Bind("id,MemberName,MemberRelation,ContactNumber")] EmployeeFamilyDetails employeeFamilyDetails)
         {
+
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
-                _context.Add(employeeFamilyDetails);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                bool result = await _employeeService.CreateEmployee(employee, employeeFamilyDetails);
+                if (result)
+                {
+                    return RedirectToAction(nameof(Index));
+
+                }
             }
-            return View(employee);
+
+
+            EmpFamilyDetailsViewModel empFamilyDetailsViewModel = new EmpFamilyDetailsViewModel();
+            empFamilyDetailsViewModel.Employee = employee;
+            empFamilyDetailsViewModel.EmployeeFamilyDetails = employeeFamilyDetails;
+            return View(empFamilyDetailsViewModel);
         }
 
         // GET: Employees/Edit/5
@@ -93,10 +101,10 @@ namespace EmployeeManagementSys.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.employees.FindAsync(id);
-            var employeeFamilyDetails = await _context.EmployeeFamilyDetails.FindAsync(id);
+            var employee = await _employeeService.GetEmployeeById(id);
+            var employeeFamilyDetails = await _employeeService.GetEmployeeFamilyDetailsById(id);
 
-            if (employee == null && employeeFamilyDetails == null)
+            if (employee == null || employeeFamilyDetails == null)
             {
                 return NotFound();
             }
@@ -115,6 +123,7 @@ namespace EmployeeManagementSys.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,FirstName,LastName,Email,Address,Salary,Role")] Employee employee,
                                                 [Bind("id,MemberName,MemberRelation,ContactNumber")] EmployeeFamilyDetails employeeFamilyDetails)
         {
+
             if (id != employee.EmployeeId)
             {
                 return NotFound();
@@ -124,9 +133,7 @@ namespace EmployeeManagementSys.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
-                    _context.Update(employeeFamilyDetails);
-                    await _context.SaveChangesAsync();
+                    await _employeeService.UpdateEmployee(employee, employeeFamilyDetails);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -141,7 +148,10 @@ namespace EmployeeManagementSys.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            EmpFamilyDetailsViewModel empFamilyDetailsViewModel = new EmpFamilyDetailsViewModel();
+            empFamilyDetailsViewModel.Employee = employee;
+            empFamilyDetailsViewModel.EmployeeFamilyDetails = employeeFamilyDetails;
+            return View(empFamilyDetailsViewModel);
         }
 
         // GET: Employees/Delete/5
@@ -152,14 +162,21 @@ namespace EmployeeManagementSys.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.employees
-                .FirstOrDefaultAsync(m => m.EmployeeId == id);
-            if (employee == null)
+            var employee = await _employeeService.GetEmployeeById(id);
+            var employeeFamilyDetails = await _employeeService.GetEmployeeFamilyDetailsById(id);
+
+
+            //var employee = await _context.employees
+            //    .FirstOrDefaultAsync(m => m.EmployeeId == id);
+            if (employee == null || employeeFamilyDetails == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            EmpFamilyDetailsViewModel empFamilyDetailsViewModel = new EmpFamilyDetailsViewModel();
+            empFamilyDetailsViewModel.Employee = employee;
+            empFamilyDetailsViewModel.EmployeeFamilyDetails = employeeFamilyDetails;
+            return View(empFamilyDetailsViewModel);
         }
 
         // POST: Employees/Delete/5
@@ -167,15 +184,15 @@ namespace EmployeeManagementSys.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.employees.FindAsync(id);
-            _context.employees.Remove(employee);
-            await _context.SaveChangesAsync();
+           
+            await _employeeService.DeleteEmployee(id);
+            
             return RedirectToAction(nameof(Index));
         }
 
         private bool EmployeeExists(int id)
         {
-            return _context.employees.Any(e => e.EmployeeId == id);
+            return _employeeService.EmployeeExists(id);
         }
     }
 }
