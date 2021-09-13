@@ -1,4 +1,5 @@
 ﻿using EmployeeManagementSys.DAL.Data.Model;
+using EmployeeManagementSys.DAL.Data.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,8 @@ namespace EmployeeManagementSys.DAL.Data
         }
         public DbSet<Employee> employees { get; set; }
         public DbSet<EmployeeFamilyDetails> EmployeeFamilyDetails { get; set; }
+        public DbSet<EmployeeAdvn> EmployeeAdvn { get; set; }
+        public DbSet<EmpFamilyDetAdvn> EmpFamilyDetAdvn { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

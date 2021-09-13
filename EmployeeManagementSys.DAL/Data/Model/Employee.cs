@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,10 @@ namespace EmployeeManagementSys.DAL.Data.Model
 {
     public class Employee
     {
+        public Employee()
+        {
+            EmployeeFamilyDetails = new HashSet<EmployeeFamilyDetails>();
+        }
         public int EmployeeId { get; set; }
 
         [Required(ErrorMessage = "Please enter first name")]
@@ -29,5 +34,9 @@ namespace EmployeeManagementSys.DAL.Data.Model
         public string Address{ get; set; }
 
         public string Role { get; set; }
+
+        [InverseProperty("Employee")]
+        public virtual ICollection<EmployeeFamilyDetails> EmployeeFamilyDetails { get; set; }
+
     }
 }

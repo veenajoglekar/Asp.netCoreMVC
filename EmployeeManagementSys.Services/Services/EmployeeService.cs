@@ -17,6 +17,10 @@ namespace EmployeeManagementSys.Services.Services
         public Task UpdateEmployee(Employee employee, EmployeeFamilyDetails employeeFamilyDetails);
         public Task DeleteEmployee(int id);
         public bool EmployeeExists(int id);
+        public Task<double> GetAverage();
+        public Task<bool> GetAny();
+
+
 
 
 
@@ -27,9 +31,43 @@ namespace EmployeeManagementSys.Services.Services
         {
             using (var Context = new EmployeeManagementDbContext())
             {
-                return await Context.employees.ToListAsync();
+                //var result = await Context.employees.OrderBy(e => e.FirstName)
+                //                    .ThenBy(e => e.LastName).ToListAsync();
+                //return result;
+
+                //sort first name in ascending order and for same name sort last name in ascending order.
+                //ThenBy: extension methods are used for sorting on multiple fields.
+
+
+
+                var result = await Context.employees.OrderBy(e => e.FirstName)
+                                    .ThenByDescending(e => e.LastName).ToListAsync();
+                return result;
+                //sort first name in ascending order and for same name sort last name in descending order.
+
+
+                
             }
         }
+
+        public async Task<bool> GetAny()
+        {
+            using (var Context = new EmployeeManagementDbContext())
+            {
+                var empany = await Context.employees.ToListAsync();
+                return empany.Any(e => e.Salary > 20000);
+            }
+        }
+        public async Task<double> GetAverage()
+        {
+            using (var Context = new EmployeeManagementDbContext())
+            {
+                var avg = await Context.employees.ToListAsync();
+                return avg.Average(e => e.Salary);
+            }
+        }
+
+
 
         public async Task<Employee> GetEmployeeById(int? id)
         {

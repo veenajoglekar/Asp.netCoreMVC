@@ -1,5 +1,7 @@
 using EmployeeManagementSys.DAL.Data;
 using EmployeeManagementSys.DAL.Data.Model;
+using EmployeeManagementSys.DAL.Data.Models;
+using EmployeeManagementSys.Models;
 using EmployeeManagementSys.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -32,7 +34,7 @@ namespace EmployeeManagementSys
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddDbContext<EmployeeManagementDbContext>(options =>
@@ -41,6 +43,8 @@ namespace EmployeeManagementSys
 
            
             services.AddSingleton<IEmployeeService, EmployeeService>();
+            services.AddSingleton<IEmpFamDetAdvnService, EmpAdvnFamilyDetService>();
+            services.AddSingleton<IEmpAdvnService, EmpAdvnService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace EmployeeManagementSys.DAL.Data.Model
+namespace EmployeeManagementSys.Services.ViewModel
 {
-    public class EmployeeFamilyDetails
+    public class vwEmployeeInfo
     {
         public int EmployeeId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+
+        public int Salary { get; set; }
+
+        public string Address { get; set; }
+
+        public string Role { get; set; }
         public int id { get; set; }
         public string MemberName { get; set; }
 
@@ -17,10 +24,6 @@ namespace EmployeeManagementSys.DAL.Data.Model
 
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
-
-        [ForeignKey(nameof(EmployeeId))]
-        [InverseProperty("EmployeeFamilyDetails")]
-        public virtual Employee Employee { get; set; }
 
     }
 }

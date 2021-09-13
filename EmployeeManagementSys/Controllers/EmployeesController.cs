@@ -28,7 +28,11 @@ namespace EmployeeManagementSys.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
+            ViewData["Any"] = await _employeeService.GetAny();
+
+            ViewData["average"] = await _employeeService.GetAverage();
             return View(await _employeeService.GetAllEmployee());
+           
         }
 
         // GET: Employees/Details/5
