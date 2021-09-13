@@ -45,6 +45,7 @@ namespace EmployeeManagementSys
             services.AddSingleton<IEmployeeService, EmployeeService>();
             services.AddSingleton<IEmpFamDetAdvnService, EmpAdvnFamilyDetService>();
             services.AddSingleton<IEmpAdvnService, EmpAdvnService>();
+            services.AddSingleton<ISharedService, sharedService>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

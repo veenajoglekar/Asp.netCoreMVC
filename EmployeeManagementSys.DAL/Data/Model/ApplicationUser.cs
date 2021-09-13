@@ -8,6 +8,6 @@ namespace EmployeeManagementSys.DAL.Data.Models
 {
     public class ApplicationUser : IdentityUser
     {
-        public Boolean isAdmin { get; set; }
+        public bool isAdmin { get; set; }
     }
 }

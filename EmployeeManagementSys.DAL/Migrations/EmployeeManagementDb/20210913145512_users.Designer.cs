@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EmployeeManagementSys.DAL.Migrations
+namespace EmployeeManagementSys.DAL.Migrations.EmployeeManagementDb
 {
     [DbContext(typeof(EmployeeManagementDbContext))]
-    [Migration("20210912110946_emp")]
-    partial class emp
+    [Migration("20210913145512_users")]
+    partial class users
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

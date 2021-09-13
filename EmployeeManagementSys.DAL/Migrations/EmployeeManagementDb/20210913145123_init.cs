@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace EmployeeManagementSys.DAL.Migrations
+namespace EmployeeManagementSys.DAL.Migrations.EmployeeManagementDb
 {
-    public partial class emp : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
