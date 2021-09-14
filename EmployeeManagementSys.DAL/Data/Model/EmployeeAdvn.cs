@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace EmployeeManagementSys.DAL.Data.Model
 {
@@ -22,7 +23,7 @@ namespace EmployeeManagementSys.DAL.Data.Model
         [Required(ErrorMessage = "Please enter last name")]
         [StringLength(100)]
         public string LastName { get; set; }
-
+        [JsonIgnore]
         [InverseProperty("EmployeeAdvn")]
         public virtual ICollection<EmpFamilyDetAdvn> EmpFamilyDetAdvn { get; set; }
     }

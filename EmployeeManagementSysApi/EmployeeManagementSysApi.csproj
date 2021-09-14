@@ -4,5 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EmployeeManagementSys.DAL\EmployeeManagementSys.DAL.csproj" />
+    <ProjectReference Include="..\EmployeeManagementSys.Services\EmployeeManagementSys.Services.csproj" />
+  </ItemGroup>
+
 
 </Project>

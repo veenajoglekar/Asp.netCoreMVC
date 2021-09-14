@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace EmployeeManagementSys.DAL.Data.Model
 {
@@ -31,6 +32,7 @@ namespace EmployeeManagementSys.DAL.Data.Model
         public DateTime? CreatedOn { get; set; }
         public DateTime? UpdatedOn { get; set; }
 
+        [JsonIgnore]
         [ForeignKey(nameof(EmployeeId))]
         [InverseProperty("EmpFamilyDetAdvn")]
         public virtual EmployeeAdvn EmployeeAdvn { get; set; }

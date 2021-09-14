@@ -37,15 +37,15 @@ namespace EmployeeManagementSys.Controllers
                 return NotFound();
             }
 
-            var EmpFamDetail = await _empDetAdvnService.GetEmpDetailsById(id);
+            var EmpDetail = await _empDetAdvnService.GetEmpDetailsById(id);
 
-            if (EmpFamDetail == null)
+            if (EmpDetail == null)
 
             {
                 return NotFound();
             }
 
-            return View(EmpFamDetail);
+            return View(EmpDetail);
         }
 
         //GET: EmpFamilyDetAdvns/Create
