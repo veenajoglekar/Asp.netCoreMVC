@@ -5,7 +5,7 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject EmployeeManagementSys.Services.Services.ISharedService SharedService 
 <ul class="navbar-nav flex-grow-1">
-    @if (SignInManager.IsSignedIn(User) && SharedService.getUser() != null  && SharedService.getUser().isAdmin)
+    @if (SignInManager.IsSignedIn(User) && SharedService.getUser() != null && SharedService.getUser().isAdmin)
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -13,20 +13,22 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </li>
+        @*<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
+            </li>*@
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="EmployeeAdvns" asp-action="Index">Create Employee</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="EmpFamilyDetAdvns" asp-action="Index">EmployeeFamliyAdv</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="EmpFamilyDetAdvns" asp-action="Index">Create EmployeeFamliyDetails</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="EmployeeAdvns" asp-action="Index">EmployeeAdv</a>
-        </li>
-    } else if(SignInManager.IsSignedIn(User))
+
+    }
+    else if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="EmpDet" asp-action="Index">Logemp</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="EmpDet" asp-action="Index">MyDetails</a>
         </li>
-     }
-    
+    }
+
 </ul>

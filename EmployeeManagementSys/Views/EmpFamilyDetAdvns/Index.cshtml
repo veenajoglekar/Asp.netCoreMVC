@@ -6,9 +6,24 @@
 }
 
 <h1>Index</h1>
-
-<p>
+@*<p>
+    Average Salary:
+    @ViewData["Average"].ToString()
+</p>
+<form class="d-flex col-sm-10">
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<p>*@
     <a asp-action="Create">Create New</a>
+</p>
+<p>
+    @using (Html.BeginForm("Index", "EmpFamilyDetAdvns" ,FormMethod.Get))
+    {
+        <b>Search By:</b> @Html.RadioButton("searchBy", "Name", true) <text>Name</text>
+        @Html.RadioButton("searchBy", "Address") <text>Address</text> <br />
+        @Html.TextBox("Search") <input type="submit" value="Search" />
+    }
 </p>
 <table class="table">
     <thead>
@@ -34,57 +49,64 @@
             <th>
                 @Html.DisplayNameFor(model => model.ContactNumber)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedOn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedOn)
-            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedOn)
+                </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.EmployeeAdvn)
             </th>
             <th></th>
         </tr>
     </thead>
+    @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4">No rows match search criteria</td>
+                </tr>
+            }
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MemberRelation)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmployeeAdvn.FirstName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MemberRelation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactNumber)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedOn)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeAdvn.FirstName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

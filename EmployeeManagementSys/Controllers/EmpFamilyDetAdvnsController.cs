@@ -24,10 +24,35 @@ namespace EmployeeManagementSys.Controllers
         }
 
         // GET: EmpFamilyDetAdvns
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchBy, string Search)
         {
-            return View(await _empFamDetAdvnService.GetAllEmployee());
+            if (Search == null)
+            {
+                return View(await _empFamDetAdvnService.GetAllEmployee());
+            }
+            if(searchBy == "Name")
+            {
+                return View(await _context.EmpFamilyDetAdvn.Where
+                    (e => e.MemberName.ToLower().Contains(Search)).ToListAsync());
+            }
+            else
+            {
+                return View(await _context.EmpFamilyDetAdvn.Where
+                    (e => e.Address.ToLower().Contains(Search)).ToListAsync());
+            }
+           // ViewData["average"] = await _empFamDetAdvnService.GetAverage();
+
+           
         }
+
+        //public async Task<List<EmpFamilyDetAdvn>> Search(string SearchString)
+        //{
+
+        //    SearchString = SearchString.ToLower();
+        //    var emp = await _context.EmpFamilyDetAdvn.Where
+        //        (e => e.MemberName.ToLower().Contains(SearchString)).ToListAsync();
+        //    return emp;
+        //}
 
         // GET: EmpFamilyDetAdvns/Details/5
         public async Task<IActionResult> Details(int? id)

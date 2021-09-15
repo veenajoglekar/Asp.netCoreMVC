@@ -31,7 +31,8 @@ namespace EmployeeManagementSys.Services.Services
             {
                 using (var Context = new EmployeeManagementDbContext())
                 {
-                    return await Context.EmployeeAdvn.ToListAsync();
+
+                return await Context.EmployeeAdvn.ToListAsync();
                 }
             }
 
