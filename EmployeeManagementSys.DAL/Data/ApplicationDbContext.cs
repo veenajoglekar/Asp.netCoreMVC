@@ -23,6 +23,7 @@ namespace EmployeeManagementSys.DAL.Data
         public EmployeeManagementDbContext()
         {
         }
+       
 
         //public IConfiguration Configuration;
         //public EmployeeManagementDbContext(IConfiguration configuration)

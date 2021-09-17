@@ -43,7 +43,8 @@ namespace EmployeeManagementSysApi.Controllers
         [HttpPost]
         public async void Post([FromBody] EmployeeAdvn empDetAdvn)
         {
-            await _empDetAdvnService.UpdateEmployee(empDetAdvn);
+            //await _empDetAdvnService.UpdateEmployee(empDetAdvn);
+            await _empDetAdvnService.CreateEmployee(empDetAdvn);
             
         }
 
@@ -51,7 +52,8 @@ namespace EmployeeManagementSysApi.Controllers
         [HttpPut("{id}")]
         public async void Put(int id, [FromBody] EmployeeAdvn empDetAdvn)
         {
-            await _empDetAdvnService.CreateEmployee(empDetAdvn);
+            await _empDetAdvnService.UpdateEmployee(empDetAdvn);
+            //await _empDetAdvnService.CreateEmployee(empDetAdvn);
         }
 
         // DELETE api/<EmployeeController>/5

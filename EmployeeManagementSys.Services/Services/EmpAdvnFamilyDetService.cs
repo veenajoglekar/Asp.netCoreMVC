@@ -17,12 +17,9 @@ namespace EmployeeManagementSys.Services.Services
      
         public Task<bool> CreateEmployee(EmpFamilyDetAdvn empFamilyDetAdvn);
         public Task UpdateEmployee(EmpFamilyDetAdvn empFamilyDetAdvn);
-       //public Task DeleteEmployee(int id);
+        public Task DeleteEmployee(int id);
         public bool EmpFamilyDetAdvnExists(int id);
         public Task<double> GetAverage();
-
-
-
 
     }
     public class EmpAdvnFamilyDetService : IEmpFamDetAdvnService
@@ -46,10 +43,6 @@ namespace EmployeeManagementSys.Services.Services
             }
         }
 
-
-
-
-
         public async Task<EmpFamilyDetAdvn> GetEmpFamDetailsById(int? id)
         {
             using (var Context = new EmployeeManagementDbContext())
@@ -59,10 +52,6 @@ namespace EmployeeManagementSys.Services.Services
                     .FirstOrDefaultAsync(m => m.Id == id); 
             }
         }
-
-        
-
-
 
         public async Task<bool> CreateEmployee(EmpFamilyDetAdvn empFamilyDetAdvn)
         {
@@ -91,9 +80,7 @@ namespace EmployeeManagementSys.Services.Services
 
             }
         }
-        //var empFamilyDetAdvn = await _context.EmpFamilyDetAdvn.FindAsync(id);
-        //_context.EmpFamilyDetAdvn.Remove(empFamilyDetAdvn);
-        //    await _context.SaveChangesAsync();
+      
         public async Task DeleteEmployee(int id)
         {
             using (var Context = new EmployeeManagementDbContext())

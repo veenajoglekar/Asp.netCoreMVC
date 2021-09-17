@@ -5,7 +5,8 @@
 @inject UserManager<ApplicationUser> UserManager
 @inject EmployeeManagementSys.Services.Services.ISharedService SharedService 
 <ul class="navbar-nav flex-grow-1">
-    @if (SignInManager.IsSignedIn(User) && SharedService.getUser() != null && SharedService.getUser().isAdmin)
+
+    @if (SignInManager.IsSignedIn(User) && User.Identity.Name == "Admin@gmail.com")
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -17,10 +18,10 @@
                 <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
             </li>*@
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="EmployeeAdvns" asp-action="Index">Create Employee</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="EmployeeAdvns" asp-action="Index">Employee</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-controller="EmpFamilyDetAdvns" asp-action="Index">Create EmployeeFamliyDetails</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="EmpFamilyDetAdvns" asp-action="Index">EmployeeFamliyDetails</a>
         </li>
 
     }

@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using EmployeeManagementSys.DAL.Data;
 using EmployeeManagementSys.DAL.Data.Model;
 using EmployeeManagementSys.Services.Services;
-using EmployeeManagementSys.Services.ViewModel;
 
 namespace EmployeeManagementSys.Controllers
 {
@@ -24,35 +23,32 @@ namespace EmployeeManagementSys.Controllers
         }
 
         // GET: EmpFamilyDetAdvns
-        public async Task<IActionResult> Index(string searchBy, string Search)
+        public async Task<ActionResult> Index(string searchBy, string Search, int pageNumber = 1)
         {
+            var results = await _empFamDetAdvnService.GetAllEmployee();
+           
+            //ViewData["average"] =  await _empFamDetAdvnService.GetAverage();
             if (Search == null)
             {
-                return View(await _empFamDetAdvnService.GetAllEmployee());
+                return View(await PaginatedList<EmpFamilyDetAdvn>.CreateAsync(results, pageNumber, 3));
             }
             if(searchBy == "Name")
             {
-                return View(await _context.EmpFamilyDetAdvn.Where
-                    (e => e.MemberName.ToLower().Contains(Search)).ToListAsync());
+                var data = results.Where
+                    (e => e.EmployeeAdvn.FirstName.ToLower().Contains(Search.ToLower()))
+                    .ToList();
+                return View(await PaginatedList<EmpFamilyDetAdvn>.CreateAsync
+                            (data, pageNumber, 3));
             }
             else
             {
-                return View(await _context.EmpFamilyDetAdvn.Where
-                    (e => e.Address.ToLower().Contains(Search)).ToListAsync());
+                var data = results.Where
+                  (e => e.Address.ToLower().Contains(Search.ToLower()))
+                  .ToList();
+                return View(await PaginatedList<EmpFamilyDetAdvn>.CreateAsync
+                            (data, pageNumber, 3));
             }
-           // ViewData["average"] = await _empFamDetAdvnService.GetAverage();
-
-           
         }
-
-        //public async Task<List<EmpFamilyDetAdvn>> Search(string SearchString)
-        //{
-
-        //    SearchString = SearchString.ToLower();
-        //    var emp = await _context.EmpFamilyDetAdvn.Where
-        //        (e => e.MemberName.ToLower().Contains(SearchString)).ToListAsync();
-        //    return emp;
-        //}
 
         // GET: EmpFamilyDetAdvns/Details/5
         public async Task<IActionResult> Details(int? id)

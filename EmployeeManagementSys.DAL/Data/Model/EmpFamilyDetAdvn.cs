@@ -35,6 +35,7 @@ namespace EmployeeManagementSys.DAL.Data.Model
         [JsonIgnore]
         [ForeignKey(nameof(EmployeeId))]
         [InverseProperty("EmpFamilyDetAdvn")]
+        [Display(Name = "Employee Name")]
         public virtual EmployeeAdvn EmployeeAdvn { get; set; }
     }
 }
