@@ -48,6 +48,7 @@ namespace EmployeeManagementSys.Controllers
                 return View(await PaginatedList<EmpFamilyDetAdvn>.CreateAsync
                             (data, pageNumber, 3));
             }
+
         }
 
         // GET: EmpFamilyDetAdvns/Details/5

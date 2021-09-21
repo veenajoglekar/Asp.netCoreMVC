@@ -18,15 +18,10 @@ namespace EmployeeManagementSys.Services.Services
             public Task DeleteEmployee(int id);
             public bool EmployeeAdvnExists(int id);
 
-
-
-
-
         }
     public class EmpAdvnService : IEmpAdvnService
     {
     
-        
             public async Task<List<EmployeeAdvn>> GetAllEmployee()
             {
                 using (var Context = new EmployeeManagementDbContext())
