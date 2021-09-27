@@ -1,4 +1,4 @@
-﻿
+﻿@using EmployeeManagementSys.Services.ViewModel;
 @model PaginatedList<EmployeeManagementSys.DAL.Data.Model.EmpFamilyDetAdvn>
 
 @{
@@ -8,9 +8,9 @@
 
 <h1>Index</h1>
 @*<p>
-    Average Salary:
-    @ViewData["Average"].ToString()
-</p>*@
+        Average Salary:
+        @ViewData["Average"].ToString()
+    </p>*@
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -122,6 +122,49 @@
 <a asp-action="Index"
    asp-route-pageNumber="@(Model.PageIndex +1)"
    class="btn btn-default @nextDisabled">Next</a>
+
+
+@{ 
+    ViewData["Title"] = "Join Tables";
+}
+
+@{
+    var Data = ViewData["JoinTables"] as List<vwJoinData>;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                FirstName
+            </th>
+            <th>
+                LastName
+            </th>
+            <th>
+                Email
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Data)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
 
 
 

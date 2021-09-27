@@ -25,8 +25,9 @@ namespace EmployeeManagementSys.Controllers
         // GET: EmpFamilyDetAdvns
         public async Task<ActionResult> Index(string searchBy, string Search, int pageNumber = 1)
         {
+            ViewData["JoinTables"] = await _empFamDetAdvnService.JoinTables();
             var results = await _empFamDetAdvnService.GetAllEmployee();
-           
+            
             //ViewData["average"] =  await _empFamDetAdvnService.GetAverage();
             if (Search == null)
             {

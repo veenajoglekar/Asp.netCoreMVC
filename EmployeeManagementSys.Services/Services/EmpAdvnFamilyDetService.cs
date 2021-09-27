@@ -22,7 +22,7 @@ namespace EmployeeManagementSys.Services.Services
         public bool EmpFamilyDetAdvnExists(int id);
         public Task<double> GetAverage();
 
-        //public Task<List<EmpFamilyDetAdvn>> JoinTables();
+        public Task<List<vwJoinData>> JoinTables();
 
     }
 
@@ -48,23 +48,27 @@ namespace EmployeeManagementSys.Services.Services
             }
         }
 
-        //public async Task<List<EmpFamilyDetAdvn>> JoinTables()
-        //{
-            
-        //    using (var Context = new EmployeeManagementDbContext())
-        //    {
-        //        var result = from e in Context.EmployeeAdvn
-        //                     join ef in Context.EmpFamilyDetAdvn
-        //                     on e.EmployeeId equals ef.Id
-        //                     into eg
-        //                     select new
-        //                     {
-        //                         eg_list = eg.ToList()
-        //                     };
-        //        //return await result;
-        //    }
+        public async Task<List<vwJoinData>> JoinTables()
+        {
 
-        //}
+            using (var Context = new EmployeeManagementDbContext())
+            {
+                var data= from e in Context.EmployeeAdvn
+                             join ef in Context.EmpFamilyDetAdvn
+                             on e.EmployeeId equals ef.Id
+                             select new vwJoinData
+                             {
+                                 firstName =e.FirstName,
+                                 lastName =e.LastName,
+                                 Email = ef.Email
+                             };
+                return await data.ToListAsync();
+
+                
+               
+            }
+
+        }
 
         public async Task<EmpFamilyDetAdvn> GetEmpFamDetailsById(int? id)
         {
