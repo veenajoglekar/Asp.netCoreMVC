@@ -53,9 +53,9 @@ namespace EmployeeManagementSys.Services.Services
 
             using (var Context = new EmployeeManagementDbContext())
             {
-                var data= from e in Context.EmployeeAdvn
-                             join ef in Context.EmpFamilyDetAdvn
-                             on e.EmployeeId equals ef.Id
+                var data= from ef in Context.EmpFamilyDetAdvn
+                             join e in Context.EmployeeAdvn
+                             on ef.EmployeeId equals e.EmployeeId
                              select new vwJoinData
                              {
                                  firstName =e.FirstName,

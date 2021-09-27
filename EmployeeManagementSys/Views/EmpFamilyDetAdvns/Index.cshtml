@@ -5,7 +5,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@*<link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />*@
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css" />
 <h1>Index</h1>
 @*<p>
         Average Salary:
@@ -124,14 +125,11 @@
    class="btn btn-default @nextDisabled">Next</a>
 
 
-@{ 
-    ViewData["Title"] = "Join Tables";
-}
 
 @{
     var Data = ViewData["JoinTables"] as List<vwJoinData>;
 }
-<table class="table">
+<table id="Join" class="table">
     <thead>
         <tr>
             <th>
@@ -163,6 +161,18 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script src="~/js/jquery-3.5.1.js"></script>
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#Join').DataTable();
+        });
+    </script>
+}
+
 
 
 
